@@ -27,7 +27,7 @@ git clone https://github.com/MrJackJones/Mini_IDS.git
 pip3.6 install requirements.txt
 ```
 
-3. Подготовливаем  базу:
+3. Подготавливаем базу:
 ```bash
 python3.6 manage.py makemigrations
 python3.6 manage.py migrate
@@ -41,6 +41,10 @@ python3.6 manage.py createsuperuser
 5. Запускаем сервер
 ```bash
 python3.6 manage.py runserver
+```
+6. Открываем в браузере
+```bash
+http://127.0.0.1:8000/
 ```
 
 ## Запуск захвата трафика 
