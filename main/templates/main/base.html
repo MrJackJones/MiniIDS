@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>IDS</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <h1 class="logo"><strong><a href="{% url 'main:index' %}">Mini IDS</a></strong></h1>
+                </div>
+                <ul class="nav navbar-nav">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'main:index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span> Домой</a></li>
+                    <li><a href="{% url 'main:all_signature' %}" class="top-menu"><span class="glyphicon glyphicon-list-alt"></span> Все сигнатуры</a></li>
+                    <li><a href="{% url 'main:signature' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span> Новая сигнатура</a></li>
+                    <li><a href="{% url 'main:logout' %}"  class="top-menu"><span class="glyphicon glyphicon-log-in"></span> Выход</a></li>
+                 {% else %}
+                    <li><a href="{% url 'main:login' %}"  class="top-menu"><span class="glyphicon glyphicon-log-out"></span> Вход</a></li>
+                {% endif %}
+                </ul>
+              </div>
+            </nav>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

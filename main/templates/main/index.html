@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <h1>Предупреждения</h1>
+    <div>
+        <table class="table table-striped">
+        <thead class="thead-light">
+            <tr class="time upper">
+                <th>ID</th>
+                <th>Имя сигнатуры</th>
+                <th>ID в базе</th>
+                <th>Время</th>
+                <th>Протокол</th>
+                <th>Адрес источника</th>
+                <th>Адрес назначения</th>
+                <th>Порт источника</th>
+                <th>Порт назначения</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in all_alerts %}
+            <tr class="time">
+                <th>{{ post.id }}</th>
+                <td>{{ post.signature_name }}</td>
+                <td>{{ post.id_signature }}</td>
+                <td>{{ post.action_time }}</td>
+                <td>{{ post.ip_proto }}</td>
+                <td>{{ post.ip_src }}</td>
+                <td>{{ post.ip_dst }}</td>
+                <td>{{ post.tcp_sport }}</td>
+                <td>{{ post.tcp_dport }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1 class="header-content">Необходима авторизация</h1>
+    {% endif %}
+{% endblock %}

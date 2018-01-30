@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <h1>Синатуры</h1>
+    <div>
+        <table class="table table-striped">
+        <thead class="thead-light">
+            <tr class="time upper">
+                <th>ID</th>
+                <th>Имя сигнатуры</th>
+                <th>Протокол</th>
+                <th>Адрес источника</th>
+                <th>Адрес назначения</th>
+                <th>Порт источника</th>
+                <th>Порт назначения</th>
+                <th>Сигнатура</th>
+                <th>Обновить</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in all_signature %}
+            <tr class="time">
+                <th>{{ post.id }}</th>
+                <td>{{ post.name }}</td>
+                <td>{{ post.ip_proto }}</td>
+                <td>{{ post.ip_src }}</td>
+                <td>{{ post.ip_dst }}</td>
+                <td>{{ post.ip_sport }}</td>
+                <td>{{ post.ip_dport }}</td>
+                <td>{{ post.raw }}</td>
+                <td><a href="{% url 'main:update' post.id %}" class="updateButton"><button class="button_update glyphicon glyphicon-edit"><span></span> Изменить</button></a></td>
+                <td>
+                <form action="{% url 'main:delete' post.id %}" method="post">
+                {% csrf_token %}
+                <button class="button_delete glyphicon glyphicon-remove"><span> Удалить</span></button>
+                </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% else %}
+    {% endif %}
+{% endblock %}
