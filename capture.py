@@ -24,7 +24,8 @@ def custom_action(packet):
                        tcp_dport=packet['IP'].dport,
                        raw=packet.payload)
     data.save()
-    return data
+    result = 'IP_SRC: {} : IP_DST: {} PORT_SRC: {} PORT_DST: {}'.format(packet['IP'].src, packet['IP'].dst, packet['IP'].sport, packet['IP'].dport)
+    return result
 
 
 # Вызов в бесконечном цикле захвата пакетов

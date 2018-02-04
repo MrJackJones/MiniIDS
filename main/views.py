@@ -71,4 +71,4 @@ class Update_signature(UpdateView):
 # Представление для удлаения сигнатуры
 class Delete_signature(DeleteView):
     model = Signature
-    success_url = reverse_lazy('main:index')
+    success_url = reverse_lazy('main:all_signature')
