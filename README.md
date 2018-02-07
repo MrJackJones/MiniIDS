@@ -1,4 +1,4 @@
-#Mini IDS
+# Mini IDS
 ## О программе
 Простая IDS стистема на Python.
 
